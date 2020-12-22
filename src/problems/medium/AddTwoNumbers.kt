@@ -1,7 +1,5 @@
 package problems.medium
 
-import problems.easy.TwoSum
-
 /**
  * Example:
  * var li = ListNode(5)
@@ -46,32 +44,8 @@ fun main() {
 
 class AddTwoNumbers {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
-        var l1Index = 0
-
         var iter1 = l1
-        while (iter1 != null) {
-            iter1 = iter1.next
-            l1Index++
-        }
-
-        var l2Index = 0
-
         var iter2 = l2
-        while (iter2 != null) {
-            iter2 = iter2.next
-            l2Index++
-        }
-
-        val maxIndex = if (l1Index > l2Index) {
-            l1Index
-        } else {
-            l2Index
-        }
-
-        iter1 = l1
-        iter2 = l2
-
-        //println("maxIndex : $maxIndex")
 
         var adder = 0
 
@@ -79,29 +53,22 @@ class AddTwoNumbers {
 
         var listStart: ListNode? = null
 
-        for (i in 0 until maxIndex) {
-            val val1 = if (iter1?.`val` != null) {
-                iter1.`val`
-            } else {
-                0
-            }
+        var index = 0
+        while (iter1 != null || iter2 != null) {
+            val val1 = if (iter1?.`val` != null) iter1.`val` else 0
+            val val2 = if (iter2?.`val` != null) iter2.`val` else 0
 
-            val val2 = if (iter2?.`val` != null) {
-                iter2.`val`
-            } else {
-                0
-            }
-
-            println("val1 : $val1 val2 : $val2 adder : $adder")
             val sum = val1 + val2 + adder
 
             val node = ListNode(sum % 10)
+
             if (nodePointer != null) {
                 nodePointer.next = node
             }
+
             nodePointer = node
 
-            if (i == 0) {
+            if (index == 0) {
                 listStart = nodePointer
             }
 
@@ -109,9 +76,10 @@ class AddTwoNumbers {
 
             iter1 = iter1?.next
             iter2 = iter2?.next
+            index++
         }
 
-        if(adder == 1) {
+        if (adder == 1) {
             nodePointer?.next = ListNode(1)
         }
 
