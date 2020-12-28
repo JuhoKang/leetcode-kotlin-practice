@@ -12,7 +12,7 @@ fun main() {
 /**
  * O(m+n) time complexity
  *
- * Follow up: The overall run time complexity should be O(log (m+n)).
+ * Follow up: TODO The overall run time complexity should be O(log (m+n)).
  */
 class MedianOfTwoSortedArrays {
     fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
