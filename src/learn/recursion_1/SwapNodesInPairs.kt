@@ -1,5 +1,7 @@
 package learn.recursion_1
 
+import common.ListNode
+
 fun main() {
     val swapNodesInPairs = SwapNodesInPairs()
     val ln1 = ListNode(1)
@@ -46,8 +48,4 @@ class SwapNodesInPairs {
         newLeft?.next = newRight
         return newLeft
     }
-}
-
-class ListNode(var `val`: Int) {
-    var next: ListNode? = null
 }

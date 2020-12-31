@@ -1,5 +1,7 @@
 package problems.medium
 
+import common.ListNode
+
 /**
  * Example:
  * var li = ListNode(5)
@@ -85,8 +87,4 @@ class AddTwoNumbers {
 
         return listStart
     }
-}
-
-class ListNode(var `val`: Int) {
-    var next: ListNode? = null
 }
