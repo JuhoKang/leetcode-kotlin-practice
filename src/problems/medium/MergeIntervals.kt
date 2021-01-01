@@ -73,6 +73,7 @@ class MergeIntervals {
 
         return resultList.toTypedArray()
     }
-}
 
-class IntervalNode(val left: Int = 0, val right: Int = 0)
+
+    class IntervalNode(val left: Int = 0, val right: Int = 0)
+}
