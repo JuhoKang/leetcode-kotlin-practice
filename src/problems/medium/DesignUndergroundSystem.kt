@@ -12,8 +12,7 @@ fun main() {
     undergroundSystem.checkOut(45, "Waterloo", 15)
     undergroundSystem.checkOut(27, "Waterloo", 20)
     undergroundSystem.checkOut(32, "Cambridge", 22)
-    println(
-        undergroundSystem.getAverageTime(
+    println(undergroundSystem.getAverageTime(
             "Paradise",
             "Cambridge"
         )
@@ -49,7 +48,6 @@ class DesignUndergroundSystem {
 
     class UndergroundSystem {
         private val idMap = HashMap<Int, StationEvent>()
-
         private val stToStMap = HashMap<StationPair, MutableList<Int>>()
 
         fun checkIn(id: Int, stationName: String, t: Int) {
@@ -60,6 +58,7 @@ class DesignUndergroundSystem {
             val start = idMap[id]
 
             val key = StationPair(start!!.name, stationName)
+
             if (stToStMap[key] == null) {
                 stToStMap[key] = mutableListOf()
             }
