@@ -1,64 +1,61 @@
-package problems.medium
+package problems.hard
 
 fun main() {
-    val wordSearch = WordSearch()
+    val wordSearch2 = WordSearch2()
 
     println(
-        wordSearch.exist(
+        wordSearch2.findWords(
             arrayOf(
-                charArrayOf('A', 'B', 'C', 'E'),
-                charArrayOf('S', 'F', 'C', 'S'),
-                charArrayOf('A', 'D', 'E', 'E')
-            ), "ABCCED"
-        )
-    )
-    println(
-        wordSearch.exist(
-            arrayOf(
-                charArrayOf('A', 'B', 'C', 'E'),
-                charArrayOf('S', 'F', 'C', 'S'),
-                charArrayOf('A', 'D', 'E', 'E')
-            ), "SEE"
-        )
-    )
-    println(
-        wordSearch.exist(
-            arrayOf(
-                charArrayOf('A', 'B', 'C', 'E'),
-                charArrayOf('S', 'F', 'C', 'S'),
-                charArrayOf('A', 'D', 'E', 'E')
-            ), "ABCB"
+                charArrayOf('o', 'a', 'a', 'n'),
+                charArrayOf('e', 't', 'a', 'e'),
+                charArrayOf('i', 'h', 'k', 'r'),
+                charArrayOf('i', 'f', 'l', 'v')
+            ),
+            arrayOf("oath", "pea", "eat", "rain")
         )
     )
 
     println(
-        wordSearch.exist(
+        wordSearch2.findWords(
             arrayOf(
-                charArrayOf('A', 'B', 'C', 'E'),
-                charArrayOf('S', 'F', 'E', 'S'),
-                charArrayOf('A', 'D', 'E', 'E')
-            ), "ABCESEEEFS"
+                charArrayOf('a'),
+                charArrayOf('a'),
+            ),
+            arrayOf("a")
         )
     )
+
+
 }
 
-class WordSearch {
+class WordSearch2 {
     var m = 0
     var n = 0
-    fun exist(board: Array<CharArray>, word: String): Boolean {
+    fun findWords(board: Array<CharArray>, words: Array<String>): List<String> {
         m = board[0].size
         n = board.size
 
 //        println("m : $m n : $n word : $word ")
 
-        for (i in 0 until m) {
-            for (j in 0 until n) {
-                if (exist(i, j, board, word, mutableListOf())) {
-                    return true
+        val result = mutableListOf<String>()
+
+        for (word in words) {
+            var foundWord = false
+
+            for (i in 0 until m) {
+                if (!foundWord) {
+                    for (j in 0 until n) {
+                        if (!foundWord && exist(i, j, board, word, mutableListOf())) {
+                            result.add(word)
+                            foundWord = true
+                        }
+                    }
                 }
+
             }
         }
-        return false
+
+        return result
     }
 
     private fun exist(
@@ -87,7 +84,7 @@ class WordSearch {
                 tempList.addAll(history)
                 tempList.add(Pair(x, y))
 
-                if(exist(x - 1, y, board, word.substring(1), tempList)) {
+                if (exist(x - 1, y, board, word.substring(1), tempList)) {
                     return true
                 }
             }
@@ -96,7 +93,7 @@ class WordSearch {
                 tempList.addAll(history)
                 tempList.add(Pair(x, y))
 
-                if(exist(x, y - 1, board, word.substring(1), tempList)) {
+                if (exist(x, y - 1, board, word.substring(1), tempList)) {
                     return true
                 }
             }
@@ -104,7 +101,7 @@ class WordSearch {
                 val tempList = mutableListOf<Pair<Int, Int>>()
                 tempList.addAll(history)
                 tempList.add(Pair(x, y))
-                if(exist(x + 1, y, board, word.substring(1), tempList)) {
+                if (exist(x + 1, y, board, word.substring(1), tempList)) {
                     return true
                 }
             }
@@ -112,7 +109,7 @@ class WordSearch {
                 val tempList = mutableListOf<Pair<Int, Int>>()
                 tempList.addAll(history)
                 tempList.add(Pair(x, y))
-                if(exist(x, y + 1, board, word.substring(1), tempList)) {
+                if (exist(x, y + 1, board, word.substring(1), tempList)) {
                     return true
                 }
             }
