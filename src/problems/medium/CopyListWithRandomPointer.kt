@@ -1,16 +1,15 @@
 package problems.medium
 
-import common.Node
 import java.util.*
 
 fun main() {
     val copyListWithRandomPointer = CopyListWithRandomPointer()
 
-    val node0 = Node(7)
-    val node1 = Node(13)
-    val node2 = Node(11)
-    val node3 = Node(10)
-    val node4 = Node(1)
+    val node0 = CopyListWithRandomPointer.Node(7)
+    val node1 = CopyListWithRandomPointer.Node(13)
+    val node2 = CopyListWithRandomPointer.Node(11)
+    val node3 = CopyListWithRandomPointer.Node(10)
+    val node4 = CopyListWithRandomPointer.Node(1)
 
     node0.next = node1
     node0.random = null
@@ -82,5 +81,10 @@ class CopyListWithRandomPointer {
         }
 
         return nodeMap[0]
+    }
+
+    class Node (var `val`: Int) {
+        var next: Node? = null
+        var random: Node? = null
     }
 }
