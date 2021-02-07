@@ -12,15 +12,14 @@ class ShuffleString {
         val charArray = s.toCharArray()
 
         for (i in 0..charArray.lastIndex) {
-            val target = i
-            while (target != indices[target]) {
-                val tempChar = charArray[indices[target]]
-                charArray[indices[target]] = charArray[target]
-                charArray[target] = tempChar
+            while (i != indices[i]) {
+                val tempChar = charArray[indices[i]]
+                charArray[indices[i]] = charArray[i]
+                charArray[i] = tempChar
 
-                val tempIndex = indices[indices[target]]
-                indices[indices[target]] = indices[target]
-                indices[target] = tempIndex
+                val tempIndex = indices[indices[i]]
+                indices[indices[i]] = indices[i]
+                indices[i] = tempIndex
             }
         }
 
